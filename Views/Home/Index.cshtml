@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    
+}
+<div>
+    <form asp-controller="Home" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <input class="form-control"
+                   type="number"
+                   placeholder="Código"
+                   id="codigo"
+                   name="documento.Id"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Título"
+                   id="titulo"
+                   name="documento.Titulo"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <textarea class="form-control"
+                      id="processo"
+                      rows="3"
+                      name="documento.Processo"
+                      placeholder="Processo"
+                      required></textarea>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control"
+                    id="categoria"
+                    name="documento.Categoria"
+                    required>
+                <option value="" selected disabled>Categoria</option>
+                <option value="Só tem esse mesmo">Só tem essa aqui mesmo</option>
+            </select>
+        </div>
+
+        <input type="file" name="file" class="form-group"/>
+
+        <div class="form-group">
+            <input type="submit"
+                   value="Cadastrar"
+                   class="btn btn-primary" />
+        </div>
+
+    </form>
+</div>
