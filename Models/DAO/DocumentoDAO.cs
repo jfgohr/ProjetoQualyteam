@@ -1,10 +1,7 @@
-﻿using aaa.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace _1105_1.Models.Dao
+namespace ProjetoQualyteam.Models.Dao
 {
     public class DocumentoDAO
     {
@@ -36,6 +33,12 @@ namespace _1105_1.Models.Dao
         {
             using (var context = new DataBaseContext())
                 return context.Documentos.Where(d => d.Id == id).FirstOrDefault();
+        }
+
+        public bool Exists(int id)
+        {
+            using (var context = new DataBaseContext())
+                return context.Documentos.Where(d => d.Id == id).FirstOrDefault() != null ? true : false;
         }
     }
 

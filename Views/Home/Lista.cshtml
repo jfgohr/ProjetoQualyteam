@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Lista";
+}
+
+<div>
+
+    <h3>Lista de documentos</h3>
+    <script src="~/scripts/sorttable.js"></script>
+    <script>sorttable.sort_alpha = function (a, b) { return a[0].localeCompare(b[0]); }</script>
+    <table class="sortable, table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th width="3%" scope="col" id="Id">#</th>
+                <th width="28%" scope="col" id="Titulo" class="">Título</th>
+                <th width="55%" scope="col" id="Processo">Processo</th>
+                <th width="10%" scope="col" id="Categoria">Categoria</th>
+                <th width="4%" scope="col">Anexo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doc in ViewBag.Documentos)
+            {
+                <tr>
+                    <td scope="row">@doc.Id</td>
+                    <td>@doc.Titulo</td>
+                    <td>@doc.Processo</td>
+                    <td>@doc.Categoria</td>
+                    <td data-toggle="tooltip" title="@doc.Nome"><a href="/Home/Download/@doc.Id"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFESURBVEhL7dW7LgRRAMbxkbgEySpEoyAanU4iJAgKyXY6UajcwhvsM6h0bo13UKhcgpBIPACJRiRWtkXp/52zJ8ZkyJk5s6r9kl+cKTZ/dnZH1Nx/rwVbeMQnrjGB4PXUfypwiBuMoA0LeK1f594m7uACF+hGfPrLjuwx+xTQ2zKIA5wjGdDGcWWP2eYb0CrYtUf/xQP7+CswC92TAXPlubRAF9yGcIsOKPCGaXgvHthDWuAJK3CBKXgvGThDwwK6gb8FVqFAFUGBUxQa2IAC+mTofIm0wBpyBfSiZ7iP3jHm7dHMBdaRK6DpfV+0R7MdbNtjNIxkYBKZ94GSPZr1QQ++F9SwjKCA9o5ee/yxfrQjOKCdQDc0bQroUREU0Mag33TOXH1vCYUE3MrQPdBjWv8P7vGAURS6TiimL9sMWtEci6IvCqRTss5NslYAAAAASUVORK5CYII="></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

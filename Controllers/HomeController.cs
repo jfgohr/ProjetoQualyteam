@@ -1,31 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using _1105_1.Models.Dao;
-using aaa.Models;
+using ProjetoQualyteam.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames.Application;
+using ProjetoQualyteam.Models.Dao;
 
-namespace _1105_1.Controllers
+namespace ProjetoQualyteam.Controllers
 {
     public class HomeController : Controller
     {
-        Documento doc1 = new Documento();
-
         public IActionResult Index()
         {
-            
+            ViewBag.Documento = new Documento();
+            return View();
+        }
+
+
+        public IActionResult Lista()
+        {
+            DocumentoDAO dao = new DocumentoDAO();
+            ViewBag.Documentos = dao.SelectAll().OrderBy(t => t.Titulo);
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file, Documento documento)
+        public async Task<IActionResult> Adiciona(IFormFile file, Documento documento)
         {
+            DocumentoDAO dao = new DocumentoDAO();
+
             if (file == null || file.Length == 0)
                 return Content("file not selected");
+
+            Documento temp = dao.DocumentoById(documento.Id);
+            if (temp != null)
+            {
+                ViewBag.Documento = temp;
+                return View("Index");
+            }
 
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", file.FileName);
 
@@ -41,35 +54,26 @@ namespace _1105_1.Controllers
 
                 Documento tempDoc = new Documento
                 {
+                    Id = documento.Id,
                     Titulo = documento.Titulo,
                     Processo = documento.Processo,
                     Categoria = documento.Categoria,
-                    Anexo = ms.ToArray()
+                    Anexo = ms.ToArray(),
+                    Nome = file.FileName
                 };
 
-                DocumentoDAO dao = new DocumentoDAO();
                 dao.Insert(tempDoc);
-
             }
-            return RedirectToAction("Index");
+            ViewBag.Sucesso = true;
+            return View("Index");
         }
-        
-        /*public async Task<IActionResult> Download(string filename)
+
+        public FileResult Download(int id)
         {
-            if (filename == null)
-                return Content("filename not present");
+            DocumentoDAO dao = new DocumentoDAO();
+            var documento = dao.DocumentoById(id);
 
-            var path = Path.Combine(
-                           Directory.GetCurrentDirectory(),
-                           "wwwroot", filename);
-
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                await stream.CopyToAsync(memory);
-            }
-            memory.Position = 0;
-            return File(memory, path.GetType().ToString(), Path.GetFileName(path));
-        }*/
+            return File(documento.Anexo, Octet, documento.Nome);
+        }
     }
 }

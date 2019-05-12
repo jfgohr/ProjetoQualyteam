@@ -1,16 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    
+
 }
 <div>
-    <form asp-controller="Home" asp-action="UploadFile" method="post" enctype="multipart/form-data">
-
+    <form asp-controller="Home" asp-action="Adiciona" method="post" enctype="multipart/form-data">
+        <h3>Cadastrar</h3>
+        @if (ViewBag.Documento != null && ViewBag.Documento.Id != 0)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Código <string>@ViewBag.Documento.Id</string> já cadastrado!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        @if (ViewBag.Sucesso != null && ViewBag.Sucesso)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Documento cadastrado com sucesso. Clique <a href="/Home/Lista" class="alert-link">aqui</a> para visualizar todos os documentos.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
         <div class="form-group">
             <input class="form-control"
                    type="number"
                    placeholder="Código"
                    id="codigo"
                    name="documento.Id"
+                   min="0"
                    required>
         </div>
 
@@ -38,11 +57,43 @@
                     name="documento.Categoria"
                     required>
                 <option value="" selected disabled>Categoria</option>
-                <option value="Só tem esse mesmo">Só tem essa aqui mesmo</option>
+                <option value="Categoria 1">Categoria 1</option>
+                <option value="Categoria 2">Categoria 2</option>
+                <option value="Categoria 3">Categoria 3</option>
+                <option value="Categoria 4">Categoria 4</option>
             </select>
         </div>
 
-        <input type="file" name="file" class="form-group"/>
+        <div class="form-group">
+            <input type="file"
+                   name="file"
+                   class="file"
+                   style="
+                            visibility:hidden;
+                            position:absolute"
+                   accept=".pdf, .xls*, .doc*"
+                   required>
+            <div class="input-group col-xs-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Anexo</span>
+                </div>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-picture, file"></i></span>
+                <input type="text" class="form-control input-lg" disabled placeholder="Selecione um arquivo" required>
+                <span class="input-group-btn">
+                    <button class="browse btn btn-primary input-lg, btn btn-secondary" type="button"><i class="glyphicon glyphicon-search"></i>Buscar</button>
+                </span>
+
+                <script>
+                    $(document).on('click', '.browse', function () {
+                        var file = $(this).parent().parent().parent().find('.file');
+                        file.trigger('click');
+                    });
+                    $(document).on('change', '.file', function () {
+                        $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+                    });
+                </script>
+            </div>
+        </div>
 
         <div class="form-group">
             <input type="submit"

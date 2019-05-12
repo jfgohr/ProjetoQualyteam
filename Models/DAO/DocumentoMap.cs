@@ -1,8 +1,8 @@
-﻿using aaa.Models;
+﻿using ProjetoQualyteam.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace _1105_1.Models.Dao
+namespace ProjetoQualyteam.Models.Dao
 {
     public class DocumentoMap : IEntityTypeConfiguration<Documento>
     {

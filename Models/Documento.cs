@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace aaa.Models
+namespace ProjetoQualyteam.Models
 {
     public class Documento
     {
@@ -19,5 +14,8 @@ namespace aaa.Models
         public string Categoria { get; set; }
         [Required]
         public byte[] Anexo { get; set; }
+        [Required]
+        public string Nome { get; set; }
+
     }
 }

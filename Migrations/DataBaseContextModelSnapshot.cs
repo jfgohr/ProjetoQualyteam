@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _1105_1.Models.Dao;
+using ProjetoQualyteam.Models.Dao;
 
 namespace ProjetoQualyteam.Migrations
 {
@@ -29,6 +29,9 @@ namespace ProjetoQualyteam.Migrations
                     b.Property<string>("Categoria")
                         .IsRequired()
                         .HasColumnName("categoria");
+
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
                     b.Property<string>("Processo")
                         .IsRequired()

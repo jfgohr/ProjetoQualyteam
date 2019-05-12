@@ -8,21 +8,24 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Projeto Qualyteam</a>
-            </div>
+    <h3 style="padding-left:22px;">Projeto Qualyteam</h3>
+    <nav>
+        <div class="container-fluid">
+            <ul class="nav nav-tabs">
+                <li>@Html.ActionLink("Cadastrar", "Index", "Home")</li>
+                <li>@Html.ActionLink("Listar", "Lista", "Home")</li>
+            </ul>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - João Gohr</p>
+            <p>&copy; @DateTime.Now.Year - João F. Gohr</p>
         </footer>
     </div>
 

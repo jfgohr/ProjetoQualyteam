@@ -23,4 +23,5 @@ C:\Users\vostro\source\repos\ProjetoQualyteam\ProjetoQualyteam\obj\Debug\netcore
 C:\Users\vostro\source\repos\ProjetoQualyteam\ProjetoQualyteam\obj\Debug\netcoreapp2.1\ProjetoQualyteam.dll
 C:\Users\vostro\source\repos\ProjetoQualyteam\ProjetoQualyteam\obj\Debug\netcoreapp2.1\ProjetoQualyteam.pdb
 C:\Users\vostro\source\repos\ProjetoQualyteam\ProjetoQualyteam\obj\Debug\netcoreapp2.1\ProjetoQualyteam.csproj.CopyComplete
+C:\Users\vostro\source\repos\ProjetoQualyteam\ProjetoQualyteam\obj\Debug\netcoreapp2.1\Razor\Views\Home\Lista.g.cshtml.cs
 C:\Users\vostro\source\repos\ProjetoQualyteam\ProjetoQualyteam\obj\Debug\netcoreapp2.1\ProjetoQualyteam.csprojAssemblyReference.cache

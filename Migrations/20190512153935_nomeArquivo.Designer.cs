@@ -9,8 +9,8 @@ using ProjetoQualyteam.Models.Dao;
 namespace ProjetoQualyteam.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20190512010434_Initial")]
-    partial class Initial
+    [Migration("20190512153935_nomeArquivo")]
+    partial class nomeArquivo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,9 +32,15 @@ namespace ProjetoQualyteam.Migrations
                         .IsRequired()
                         .HasColumnName("categoria");
 
+                    b.Property<string>("Nome")
+                        .IsRequired();
+
                     b.Property<string>("Processo")
                         .IsRequired()
                         .HasColumnName("processo");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired();
 
                     b.Property<string>("Titulo")
                         .IsRequired()
